@@ -112,25 +112,26 @@ def forage(dmin,dmax,c,f,maxt,maxc):
     ax.grid(which='major', axis='both', linestyle='-', color='k', linewidth=1,)
    #Sets the number of ticks relative to the choice of maxt and maxc
     ax.set_xticks(np.arange(0, maxt+1,1));
-    ax.set_yticks(np.arange(0, maxc+1,1));
+    ax.set_yticks(np.arange(1, maxc+2,1));
     
     
     #Loop
     bound=1 #Indicates the width of the square, must be between 0 and 1
     for t in range(maxt) :
-        for condition in range (maxc) :
+        for condition in range (0,maxc+1) : #We start after the dead line
         # Defines the outline of the square 
          xcoord=[t,t, t+bound, t+bound] 
          ycoord=[condition+bound, condition, condition, condition + bound] 
          #TRUE denoting foraging is blue, resting is white
-         if (ForageRule[condition+1,t]==True) :
+         if (ForageRule[condition,t]==True) :
              ax.fill(xcoord,ycoord,"b") 
          else : 
              ax.fill(xcoord,ycoord,"w")
 
 forage(0, 0.01, 0.4, 0.8, 5, 6) 
-#Example with a linearly augmentation of predation for the top condition individuals
+#Example with a linear augmentation of predation for the top condition individuals
 
 
-####NOW YOU CAN CHNGE THE PARAMETERS TO SEE IF THERE IS DIFFERENT STRATEGIES#####
-##Example : varied the parameter dmin and dmax equal to 0.01 to see if the decisions will change with a probability of 10% for the individual to be predated
+
+####NOW YOU CAN CHNGE THE PARAMETERS TO SEE IF THERE ARE DIFFERENT STRATEGIES#####
+##Example : you can change the parameter dmin and dmax equal to 0.01 to see if the decisions will change with a probability of 10% for the individual to be predated
